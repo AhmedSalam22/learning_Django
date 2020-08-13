@@ -10,7 +10,7 @@ from django.views import generic
 
 
 def owner(request):
-    return HttpResponse("Hello, world. ee23e7ad is the polls index.")
+    return HttpResponse("Hello, world. 64d52e08  is the polls index.")
 
        
 def home(request):
