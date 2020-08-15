@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'polls',
     "home",
     "hello",
+    "autos",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
