@@ -1,0 +1,28 @@
+{% extends 'home/base_bootstrap.html' %}
+
+{% block content %}
+
+<table>
+    <tr>
+
+        <th>breed</th>
+        <th>Edit</th>
+        <th>Delete</th>
+
+    </tr>
+    {% for breed in breed_list %}
+        <tr>
+ 
+            <td>{{ breed.name }}</td>
+            <td><a href="{% url 'cats:breed_update' breed.id %}">Edit</a></td>
+            <td><a href="{% url 'cats:breed_delete' breed.id %}">Delete</a></td>
+        </tr>
+        
+    {% endfor %}
+
+</table>
+
+<ul>
+    <a href="{% url 'cats:cat_create' %}">Add Cat</a>
+</ul>
+{% endblock %}
