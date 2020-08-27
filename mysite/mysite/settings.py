@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     "autos",
     "cats",
     'ads',
+    'unesco',
+    'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
