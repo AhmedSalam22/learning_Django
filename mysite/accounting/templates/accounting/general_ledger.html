@@ -1,0 +1,27 @@
+{# Copyright (c) 2015-2016 Data King Ltd #}
+{# See LICENSE file for license details #}
+
+{% extends "accounting/report.html" %}
+
+{% block content %}
+
+{% for account in accounts %}
+{% if account.opening_balance or account.transactions %}
+<h2>{{ account.model }}</h2>
+
+{% if account.opening_balance %}
+<p>Opening balance on {{ fy.start }}: {{ account.opening_balance }}</p>
+{% endif %}
+
+{% with account=account.model transactions=account.transactions %}
+{% include "accounting/includes/transaction_list.html" %}
+{% endwith %}
+
+{% if account.closing_balance %}
+<p>Closing balance on {{ fy.end }}: {{ account.closing_balance }}</p>
+{% endif %}
+
+{% endif %}
+{% endfor %}
+
+{% endblock %}
