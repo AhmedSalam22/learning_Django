@@ -39,8 +39,30 @@
    onclick="document.getElementById('overlay').style.display = 'none';" >
 <img style="width:90%;margin-top: 50px; border:3px solid black;" src="{% url 'ads:ad_picture' ad.id %}">
 </div>
-{% endif %}
+{% endif %} 
+
+
 <p>
 <a href="{% url 'ads:all' %}">All Ads</a>
 </p>
+{% if user.is_authenticated %}
+<br clear="all"/>
+<p>
+</p>
+{% endif %}
+{% load crispy_forms_tags %}
+<form method="post" action="{% url 'ads:ad_comment_create' ad.id %}">
+    {% csrf_token %}
+    {{ comment_form|crispy }}
+<input type="submit" value="Submit">
+<input type="submit" value="All Forums" onclick="window.location.href='{% url 'ads:all' %}';return false;">
+</form>
+{% for comment in comments %}
+<p> {{ comment.text }} 
+({{ comment.updated_at|naturaltime }})
+{% if user == comment.owner %}
+<a href="{% url 'ads:ad_comment_delete' comment.id %}"><i class="fa fa-trash"></i></a>
+{% endif %}
+</p>
+{% endfor %}
 {% endblock %}

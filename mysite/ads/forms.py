@@ -2,6 +2,8 @@ from django import forms
 from ads.models import Ad
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from ads.humanize import naturalsize
+from django.core.exceptions import ValidationError
+from django.core import validators
 
 # Create the form class.
 class CreateForm(forms.ModelForm):
@@ -48,3 +50,8 @@ class CreateForm(forms.ModelForm):
 # https://stackoverflow.com/questions/32007311/how-to-change-data-in-django-modelform
 # https://docs.djangoproject.com/en/3.0/ref/forms/validation/#cleaning-and-validating-fields-that-depend-on-each-other
 
+
+
+# strip means to remove whitespace from the beginning and the end before storing the column
+class CommentForm(forms.Form):
+    comment = forms.CharField(required=True, max_length=500, min_length=3, strip=True)
